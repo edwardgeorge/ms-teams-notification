@@ -25,6 +25,8 @@ async function run(): Promise<void> {
       core.getInput('notification-summary') || 'GitHub Action Notification'
     const notificationColor = core.getInput('notification-color') || '0b93ff'
     const timezone = core.getInput('timezone') || 'UTC'
+    const customRunId = core.getInput('run-id')
+    const customRunNum = core.getInput('run-num')
 
     const timestamp = moment()
       .tz(timezone)
@@ -32,8 +34,8 @@ async function run(): Promise<void> {
 
     const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/')
     const sha = process.env.GITHUB_SHA || ''
-    const runId = process.env.GITHUB_RUN_ID || ''
-    const runNum = process.env.GITHUB_RUN_NUMBER || ''
+    const runId = customRunId || process.env.GITHUB_RUN_ID || ''
+    const runNum = customRunNum || process.env.GITHUB_RUN_NUMBER || ''
     const params = {owner, repo, ref: sha}
     const repoName = params.owner + '/' + params.repo
     const repoUrl = `https://github.com/${repoName}`

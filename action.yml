@@ -20,6 +20,12 @@ inputs:
   timezone:
     description: 'Timezone (ex. America/Denver)'
     required: false
+  run-id:
+    description: 'ID of run to override current'
+    required: false
+  run-num:
+    description: 'Run Num of run to override current'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
